@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JedichatApplication {
+public class JediChatApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JedichatApplication.class, args);
+		SpringApplication.run(JediChatApplication.class, args);
 	}
 }
