@@ -5,6 +5,7 @@ import de.brockhausag.jedichat.auth.UserRole;
 import de.brockhausag.jedichat.data.dto.CreateUserDto;
 import de.brockhausag.jedichat.data.dto.UserDto;
 import de.brockhausag.jedichat.data.entities.UserEntity;
+import de.brockhausag.jedichat.exceptions.NickNameAlreadyExistsException;
 import de.brockhausag.jedichat.exceptions.PasswordsNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
@@ -36,11 +37,11 @@ public class RegistrationController {
         UserEntity created;
         try {
             created = userDetailsService.create(userDto, UserRole.USER);
-        } catch (PasswordsNotMatchingException e) {
+        } catch (PasswordsNotMatchingException | NickNameAlreadyExistsException e) {
             return ResponseEntity.badRequest().build();
         }
         UserDto dto = UserDto.FromEntity(created);
-        URI location = linkTo(methodOn(UserController.class).getUser(dto.getUserId())).toUri();
+        URI location = linkTo(methodOn(UserController.class).getUser(dto.getNickName())).toUri();
         return ResponseEntity.created(location).body(location);
     }
 }

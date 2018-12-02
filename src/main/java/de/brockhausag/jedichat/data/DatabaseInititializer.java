@@ -6,6 +6,7 @@ import de.brockhausag.jedichat.data.dto.CreateUserDto;
 import de.brockhausag.jedichat.data.enums.Fraction;
 import de.brockhausag.jedichat.data.enums.Gender;
 import de.brockhausag.jedichat.data.enums.Species;
+import de.brockhausag.jedichat.exceptions.NickNameAlreadyExistsException;
 import de.brockhausag.jedichat.exceptions.PasswordsNotMatchingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,8 +71,8 @@ public class DatabaseInititializer implements ApplicationListener<ContextRefresh
             userDetailsService.create(admin, UserRole.ADMIN);
             userDetailsService.create(user, UserRole.USER);
             log.info("Successfully created default users.");
-        } catch (PasswordsNotMatchingException e) {
-            log.error("Passwords did not match. No default users created. This should never happen wtf.", e);
+        } catch (PasswordsNotMatchingException | NickNameAlreadyExistsException e) {
+            log.error("Passwords did not match or user name already exists. No default users created. This should never happen wtf.", e);
         }
 
     }

@@ -44,7 +44,7 @@ public class UserDto extends ResourceSupport {
         result.setFraction(entity.getFraction());
         result.setSpecies(entity.getSpecies());
         result.setBio(entity.getBio());
-        result.add(linkTo(methodOn(UserController.class).getUser(entity.getId())).withSelfRel());
+        result.add(linkTo(methodOn(UserController.class).getUser(entity.getNickName())).withSelfRel());
         return result;
     }
 }

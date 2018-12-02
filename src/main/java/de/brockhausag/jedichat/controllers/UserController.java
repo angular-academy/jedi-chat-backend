@@ -17,7 +17,7 @@ import javax.persistence.EntityNotFoundException;
 @RestController
 @RequestMapping(value = "/api/user", produces = {MediaTypes.HAL_JSON_VALUE})
 public class UserController {
-    private static final String USER_ID = "userId";
+    private static final String USER_NAME = "userName";
 
     private final
     JediChatUserDetailsService userDetailsService;
@@ -34,11 +34,11 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-    @RequestMapping(value = "/{" + USER_ID + "}", method = RequestMethod.GET)
-    public HttpEntity<UserDto> getUser(@PathVariable(USER_ID) Long id) {
+    @RequestMapping(value = "/{" + USER_NAME + "}", method = RequestMethod.GET)
+    public HttpEntity<UserDto> getUser(@PathVariable(USER_NAME) String nickName) {
         JediChatUserPrincipal principal;
         try {
-             principal = userDetailsService.loadById(id);
+            principal = userDetailsService.loadByNickName(nickName);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }

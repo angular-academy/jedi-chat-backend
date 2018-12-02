@@ -18,6 +18,7 @@ public class UserEntity {
     @Getter @Setter
     private Long id;
     @Getter @Setter
+    @Column(unique=true)
     private String nickName;
     @Getter @Setter
     private String passwordHash;
