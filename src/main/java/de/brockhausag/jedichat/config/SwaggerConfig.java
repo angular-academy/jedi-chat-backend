@@ -39,7 +39,7 @@ public class SwaggerConfig {
                 "None",
                 new Contact("Marvin Fittinghoff", "https://www.brockhaus-ag.de","mfittinghoff@brockhaus-ag.de"),
                 "MIT",
-                "TODO",
+                "https://github.com/angular-academy/jedi-chat-backend/blob/master/LICENSE",
                 Collections.emptyList());
     }
 }
