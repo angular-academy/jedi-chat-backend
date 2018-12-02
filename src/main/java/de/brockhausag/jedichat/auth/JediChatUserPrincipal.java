@@ -2,6 +2,7 @@ package de.brockhausag.jedichat.auth;
 
 import de.brockhausag.jedichat.data.dto.UserDto;
 import de.brockhausag.jedichat.data.entities.UserEntity;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,8 @@ import java.util.stream.Collectors;
 
 public class JediChatUserPrincipal implements UserDetails {
 
+    @Getter
     private UserEntity userEntity;
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
 
     public JediChatUserPrincipal(UserEntity userEntity) {
         this.userEntity = userEntity;

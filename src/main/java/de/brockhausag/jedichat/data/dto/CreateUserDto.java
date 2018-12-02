@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class CreateUserDto {
+
     @Getter @Setter
     private String nickName;
     @Getter @Setter

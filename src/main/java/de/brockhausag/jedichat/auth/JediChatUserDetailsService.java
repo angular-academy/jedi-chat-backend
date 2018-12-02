@@ -80,7 +80,7 @@ public class JediChatUserDetailsService implements UserDetailsService {
 
     private JediChatUserPrincipal getPrincipal() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userName = authentication.getName();
-        return (JediChatUserPrincipal) loadUserByUsername(userName);
+        String nickName = authentication.getName();
+        return loadByNickName(nickName);
     }
 }
