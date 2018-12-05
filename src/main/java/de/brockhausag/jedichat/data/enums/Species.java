@@ -4,5 +4,6 @@ public enum Species {
     HUMAN,
     ZABRAK,
     MIRIALAN,
-    TWILEK
+    TWILEK,
+    KALEESH
 }
