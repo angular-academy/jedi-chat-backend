@@ -26,19 +26,19 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(value = "/register", produces = { MediaTypes.HAL_JSON_VALUE })
-public class RegistrationController {
+@RequestMapping(value = "/", produces = { MediaTypes.HAL_JSON_VALUE })
+public class LoginController {
 
     private final JediChatUserDetailsService userDetailsService;
     private final JwtProviderService jwtProviderService;
 
     @Autowired
-    public RegistrationController(JediChatUserDetailsService userDetailsService, JwtProviderService jwtProviderService) {
+    public LoginController(JediChatUserDetailsService userDetailsService, JwtProviderService jwtProviderService) {
         this.userDetailsService = userDetailsService;
         this.jwtProviderService = jwtProviderService;
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(value = "/register", method = RequestMethod.PUT)
     public HttpEntity<URI> create(@RequestBody CreateUserDto userDto) {
         UserEntity created;
         try {
@@ -52,14 +52,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity signin(@RequestBody LoginDto login) {
+    public ResponseEntity<String> login(@RequestBody LoginDto login) {
         try {
             String username = login.getNickname();
             String token = jwtProviderService.createToken(username);
-            Map<Object, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("token", token);
-            return ok(model);
+            return ok(token);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }
