@@ -69,18 +69,4 @@ public class JediChatUserDetailsService implements UserDetailsService {
         entity.setSpecies(userDto.getSpecies());
         return userRepository.save(entity);
     }
-
-    public UserDto getCurrentUser() {
-        return getPrincipal().getUserDto();
-    }
-
-    public UserEntity getCurrentUserEntity() {
-        return getPrincipal().getUserEntity();
-    }
-
-    private JediChatUserPrincipal getPrincipal() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String nickName = authentication.getName();
-        return loadByNickName(nickName);
-    }
 }

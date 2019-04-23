@@ -27,12 +27,12 @@ public class UserController {
         this.userDetailsService = userDetailsService;
     }
 
-    //TODO: method argument provider or resolver?, passes user to method
-    @RequestMapping(method = RequestMethod.GET)
-    public HttpEntity<UserDto> user() {
-        UserDto result = userDetailsService.getCurrentUser();
-        return ResponseEntity.ok(result);
-    }
+//    //TODO: method argument provider or resolver?, passes user to method
+//    @RequestMapping(method = RequestMethod.GET)
+//    public HttpEntity<UserDto> user() {
+//        UserDto result = userDetailsService.getCurrentUser();
+//        return ResponseEntity.ok(result);
+//    }
 
     @RequestMapping(value = "/{" + USER_NAME + "}", method = RequestMethod.GET)
     public HttpEntity<UserDto> getUser(@PathVariable(USER_NAME) String nickName) {
