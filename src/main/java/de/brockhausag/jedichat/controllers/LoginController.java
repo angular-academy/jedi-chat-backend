@@ -4,6 +4,7 @@ import de.brockhausag.jedichat.auth.JediChatUserDetailsService;
 import de.brockhausag.jedichat.auth.UserRole;
 import de.brockhausag.jedichat.auth.jwt.JwtProviderService;
 import de.brockhausag.jedichat.data.dto.CreateUserDto;
+import de.brockhausag.jedichat.data.dto.JwtDto;
 import de.brockhausag.jedichat.data.dto.LoginDto;
 import de.brockhausag.jedichat.data.dto.UserDto;
 import de.brockhausag.jedichat.data.entities.UserEntity;
@@ -52,11 +53,12 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto login) {
+    public ResponseEntity<JwtDto> login(@RequestBody LoginDto login) {
         try {
             String username = login.getNickname();
             String token = jwtProviderService.createToken(username);
-            return ok(token);
+            JwtDto dto = new JwtDto(token);
+            return ok(dto);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }

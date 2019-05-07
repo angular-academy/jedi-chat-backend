@@ -26,6 +26,6 @@ public class JwtFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         Optional<Authentication> authentication = jwtProviderService.getAuthentication((HttpServletRequest) request);
         authentication.ifPresent(auth -> SecurityContextHolder.getContext().setAuthentication(auth));
-        chain.doFilter(request, response);
+         chain.doFilter(request, response);
     }
 }
